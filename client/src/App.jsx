@@ -1,6 +1,9 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import './App.css';
+import { uploadFile } from './services/api';
+
+//after uploading we want name of the file so we can call api using useEffect
 
 function App() {
   //file is constatnt variable it is read only so directly we cant change 
@@ -10,6 +13,22 @@ function App() {
 
   const fileInputRef = useRef();
   const logo = 'https://i.postimg.cc/fWVR4LKt/Dream-Shaper-v7-Create-a-minimalist-and-modern-background-for-a-0.jpg';
+
+  useEffect(() => {
+    const getImage = async () => {
+      if(file){
+        const data = new FormData();
+        data.append("name", file.name);
+        data.append("file",file);
+
+      let response = await uploadFile(data);
+
+      }
+    }
+
+    getImage();
+
+  }, [file])
 
   const onUploadClick = () =>{
     fileInputRef.current.click();

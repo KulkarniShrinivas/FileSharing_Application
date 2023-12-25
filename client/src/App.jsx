@@ -10,6 +10,7 @@ function App() {
   //we need setFile to make changes
 
   const [file, setFile,] = useState('');
+  const [result, setResult] = useState('');
 
   const fileInputRef = useRef();
   const logo = 'https://i.postimg.cc/fWVR4LKt/Dream-Shaper-v7-Create-a-minimalist-and-modern-background-for-a-0.jpg';
@@ -22,6 +23,7 @@ function App() {
         data.append("file",file);
 
       let response = await uploadFile(data);
+      setResult(response.path);
 
       }
     }
@@ -52,6 +54,9 @@ function App() {
             //when u select file there the file should select and need to store we se state
             onChange={(e)=> setFile(e.target.files[0])}
         />
+
+          <a href={result} target="_blank">{result}</a>
+
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const DBConnection = async () => {
             throw new Error('MongoDB_URL is not defined. Check your environment variables.');
         }
 
-        await mongoose.connect(MongoDB_URL, { useNewUrlParser: true });
+        await mongoose.connect(MongoDB_URL);
         console.log('Database connected successfully');
     } catch (error) {
         console.error('Error while connecting with the database ', error.message);
